@@ -1,0 +1,114 @@
+{
+  "AWSTemplateFormatVersion": "2010-09-09",
+  "Resources": {
+    "topicIPrep": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "DisplayName": "IP rep",
+        "Subscription": [
+          {
+            "Endpoint": "arn:aws:lambda:ap-southeast-2:XXXXXXXXXXXX:function:myIPReputation",
+            "Protocol": "lambda"
+          }
+        ]
+      }
+    },
+    "topicIPRepAlert": {
+      "Type": "AWS::SNS::Topic",
+      "Properties": {
+        "DisplayName": "IPRepAlert",
+        "Subscription": [
+          {
+            "Endpoint": "+61XXXXXXXXX",
+            "Protocol": "sms"
+          }
+        ]
+      }
+    },
+    "snspolicyIPrep": {
+      "Type": "AWS::SNS::TopicPolicy",
+      "Properties": {
+        "Topics": [
+          {
+            "Ref": "topicIPrep"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2008-10-17",
+          "Id": "__default_policy_ID",
+          "Statement": [
+            {
+              "Sid": "__default_statement_ID",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "*"
+              },
+              "Action": [
+                "SNS:GetTopicAttributes",
+                "SNS:SetTopicAttributes",
+                "SNS:AddPermission",
+                "SNS:RemovePermission",
+                "SNS:DeleteTopic",
+                "SNS:Subscribe",
+                "SNS:ListSubscriptionsByTopic",
+                "SNS:Publish",
+                "SNS:Receive"
+              ],
+              "Resource": {
+                "Ref": "topicIPrep"
+              },
+              "Condition": {
+                "StringEquals": {
+                  "AWS:SourceOwner": "XXXXXXXXXXXX"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+    "snspolicyIPRepAlert": {
+      "Type": "AWS::SNS::TopicPolicy",
+      "Properties": {
+        "Topics": [
+          {
+            "Ref": "topicIPRepAlert"
+          }
+        ],
+        "PolicyDocument": {
+          "Version": "2008-10-17",
+          "Id": "__default_policy_ID",
+          "Statement": [
+            {
+              "Sid": "__default_statement_ID",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": "*"
+              },
+              "Action": [
+                "SNS:GetTopicAttributes",
+                "SNS:SetTopicAttributes",
+                "SNS:AddPermission",
+                "SNS:RemovePermission",
+                "SNS:DeleteTopic",
+                "SNS:Subscribe",
+                "SNS:ListSubscriptionsByTopic",
+                "SNS:Publish",
+                "SNS:Receive"
+              ],
+              "Resource": {
+                "Ref": "topicIPRepAlert"
+              },
+              "Condition": {
+                "StringEquals": {
+                  "AWS:SourceOwner": "XXXXXXXXXXXX"
+                }
+              }
+            }
+          ]
+        }
+      }
+    }
+  },
+  "Description": "SNS config and policies for IP Reputation check."
+}

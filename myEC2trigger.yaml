@@ -1,0 +1,29 @@
+﻿AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: EC2 state change trigger function.
+Resources:
+  myEC2trigger:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: ec2trigger.lambda_handler
+      Runtime: python2.7
+      CodeUri: .
+      Description: EC2 state change trigger function.
+      MemorySize: 128
+      Timeout: 3
+      Role: 'arn:aws:iam::XXXXXXXXXXXX:role/service-role/myEC2triggerRole'
+      Events:
+        CloudWatchEvent1:
+          Type: CloudWatchEvent
+          Properties:
+            Pattern:
+              detail-type:
+                - EC2 Instance State-change Notification
+              source:
+                - aws.ec2
+              detail:
+                state:
+                  - running
+      Environment:
+        Variables:
+          TOPIC_ARN: 'arn:aws:sns:ap-southeast-2:XXXXXXXXXXXX:IPRep'

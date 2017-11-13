@@ -1,0 +1,27 @@
+﻿AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+Description: Checks IP's against ThreatCrowd.org and sends SMS via SNS.
+Resources:
+  myIPReputation:
+    Type: 'AWS::Serverless::Function'
+    Properties:
+      Handler: threatcrowd.lambda_function
+      Runtime: python2.7
+      CodeUri: .
+      Description: Checks IP's against ThreatCrowd.org and sends SMS via SNS.
+      MemorySize: 128
+      Timeout: 10
+      Role: 'arn:aws:iam::XXXXXXXXXXXX:role/service-role/myIPRepRole'
+      Events:
+        SNS1:
+          Type: SNS
+          Properties:
+            Topic:
+              Ref: SNSTopic1
+      Environment:
+        Variables:
+          TOPIC_ARN: 'arn:aws:sns:ap-southeast-2:XXXXXXXXXXXX:IPRepAlert'
+      Tags:
+        'lambda-console:blueprint': sns-message-python
+  SNSTopic1:
+    Type: 'AWS::SNS::Topic'

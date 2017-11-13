@@ -1,0 +1,105 @@
+{
+    "RoleDetailList": [
+        {
+            "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17", 
+                "Statement": [
+                    {
+                        "Action": "sts:AssumeRole", 
+                        "Effect": "Allow", 
+                        "Principal": {
+                            "Service": "lambda.amazonaws.com"
+                        }
+                    }
+                ]
+            }, 
+            "RoleId": "AROAIS5EOCPTHARZMIKMO", 
+            "CreateDate": "2017-11-12T02:38:02Z", 
+            "InstanceProfileList": [], 
+            "RoleName": "myEC2triggerRole", 
+            "Path": "/service-role/", 
+            "AttachedManagedPolicies": [
+                {
+                    "PolicyName": "AmazonEC2ReadOnlyAccess", 
+                    "PolicyArn": "arn:aws:iam::aws:policy/AmazonEC2ReadOnlyAccess"
+                }, 
+                {
+                    "PolicyName": "AWSLambdaSNSPublishPolicyExecutionRole-75bf4c84-c22e-4eff-a09e-96c6ad2c8594", 
+                    "PolicyArn": "arn:aws:iam::XXXXXXXXXXXX:policy/service-role/AWSLambdaSNSPublishPolicyExecutionRole-75bf4c84-c22e-4eff-a09e-96c6ad2c8594"
+                }, 
+                {
+                    "PolicyName": "AmazonECS_FullAccess", 
+                    "PolicyArn": "arn:aws:iam::aws:policy/AmazonECS_FullAccess"
+                }, 
+                {
+                    "PolicyName": "AWSLambdaBasicExecutionRole-0b418d60-1bfa-485f-b687-c9a4579b00ca", 
+                    "PolicyArn": "arn:aws:iam::XXXXXXXXXXXX:policy/service-role/AWSLambdaBasicExecutionRole-0b418d60-1bfa-485f-b687-c9a4579b00ca"
+                }, 
+            ], 
+            "RolePolicyList": [], 
+            "Arn": "arn:aws:iam::XXXXXXXXXXXX:role/service-role/myEC2triggerRole"
+        }, 
+        {
+            "AssumeRolePolicyDocument": {
+                "Version": "2012-10-17", 
+                "Statement": [
+                    {
+                        "Action": "sts:AssumeRole", 
+                        "Effect": "Allow", 
+                        "Principal": {
+                            "Service": "lambda.amazonaws.com"
+                        }
+                    }
+                ]
+            }, 
+            "RoleId": "AROAJ4OBBIJZBYSMQVXOK", 
+            "CreateDate": "2017-11-11T10:04:26Z", 
+            "InstanceProfileList": [], 
+            "RoleName": "myIPRepRole", 
+            "Path": "/service-role/", 
+            "AttachedManagedPolicies": [
+                {
+                    "PolicyName": "AWSLambdaSNSPublishPolicyExecutionRole-71c23bcf-8088-4579-845f-5ddfd74775d4", 
+                    "PolicyArn": "arn:aws:iam::XXXXXXXXXXXX:policy/service-role/AWSLambdaSNSPublishPolicyExecutionRole-71c23bcf-8088-4579-845f-5ddfd74775d4"
+                }, 
+                {
+                    "PolicyName": "AWSLambdaBasicExecutionRole-828200fb-3130-4c77-8a22-c27b0c626d47", 
+                    "PolicyArn": "arn:aws:iam::XXXXXXXXXXXX:policy/service-role/AWSLambdaBasicExecutionRole-828200fb-3130-4c77-8a22-c27b0c626d47"
+                }
+            ], 
+            "RolePolicyList": [], 
+            "Arn": "arn:aws:iam::XXXXXXXXXXXX:role/service-role/myIPRepRole"
+        }, 
+            "PolicyName": "AWSLambdaRole", 
+            "CreateDate": "2015-02-06T18:41:28Z", 
+            "AttachmentCount": 1, 
+            "IsAttachable": true, 
+            "PolicyId": "ANPAJX4DPCRGTC4NFDUXI", 
+            "DefaultVersionId": "v1", 
+            "PolicyVersionList": [
+                {
+                    "CreateDate": "2015-02-06T18:41:28Z", 
+                    "VersionId": "v1", 
+                    "Document": {
+                        "Version": "2012-10-17", 
+                        "Statement": [
+                            {
+                                "Action": [
+                                    "lambda:InvokeFunction"
+                                ], 
+                                "Resource": [
+                                    "*"
+                                ], 
+                                "Effect": "Allow"
+                            }
+                        ]
+                    }, 
+                    "IsDefaultVersion": true
+                }
+            ], 
+            "Path": "/service-role/", 
+            "Arn": "arn:aws:iam::aws:policy/service-role/AWSLambdaRole", 
+            "UpdateDate": "2015-02-06T18:41:28Z"
+        }
+    ]
+}
